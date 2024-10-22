@@ -1,0 +1,91 @@
+
+Category: Expletives
+####################
+*fuck*: 10
+goddam*: 6
+*damn*: 6
+bitch*: 6
+*shit*: 6
+dick*: 6
+douche*: 6
+asshole*: 6
+bastard*: 6
+ass: 6
+asses: 6
+ass*: 4
+*ass: 4
+wanker: 4
+crap: 2
+shiz: 2
+bloody: 4
+
+Category: Religious
+###################
+christ: 6
+jesus: 6
+allah: 6
+god: 6
+hell: 4
+damn: 6
+
+Category: Sexual
+################
+clit: 8
+clitoris: 8
+cock: 10
+cocksucker: 10
+cock*: 8
+cunt*: 10
+porn*: 4
+labia: 6
+humping: 2
+sex: 2
+orgas*: 8
+pussies: 8
+pussy*: 8
+dick*: 8
+piss*: 6
+dildo*: 6
+ejaculat*: 6
+slut*: 6
+cumshot: 8
+wanker: 8
+whore: 6
+balls: 4
+shag: 6
+anus: 4
+blowjob: 4
+cum: 6
+pecker*: 4
+penis*: 4
+tit: 6
+tits: 6
+titty: 6
+fellatio: 8
+
+Category: Derogatory Terms
+##########################
+*nigger*: 6
+nigg*: 6
+negro: 6
+fag: 6
+fags: 6
+faggot*: 6
+prick: 6
+whore: 6
+jew: 6
+spastic: 4
+spaz: 2
+wetback: 2
+chink: 6
+gook: 6
+gringo: 2
+homo: 4
+gay*: 2
+lesbian: 2
+lesbo: 4
+paki: 6
+twat*: 6
+queer*: 2
+stupid: 2
+retard: 2
