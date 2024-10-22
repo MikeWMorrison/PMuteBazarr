@@ -1,0 +1,2 @@
+INFO:root:Arguments: directory=--directory, episode={directory}, episode_name=--episode, subtitles={episode}, subtitles_language=--episode_name, args=('{episode_name}', '--subtitles', '{subtitles}', '--subtitles_language', '{subtitles_language}')
+ERROR:root:Failed to process subtitles for --episode - [Errno 2] No such file or directory: '{episode}'
