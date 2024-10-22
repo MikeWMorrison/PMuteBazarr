@@ -1,2 +1,10 @@
-INFO:root:Arguments: directory=--directory, episode={directory}, episode_name=--episode, subtitles={episode}, subtitles_language=--episode_name, args=('{episode_name}', '--subtitles', '{subtitles}', '--subtitles_language', '{subtitles_language}')
-ERROR:root:Failed to process subtitles for --episode - [Errno 2] No such file or directory: '{episode}'
+2024-10-22 14:41:43,576 - INFO - Arguments: directory=test_subtitles, subtitle_file=sample_episode.srt
+2024-10-22 14:41:43,580 - INFO - Processed subtitles for sample_episode.srt - Success
+2024-10-22 00:42:23,655 - INFO - Arguments: directory={directory}, subtitle_file={subtitles}
+2024-10-22 00:42:23,655 - ERROR - Failed to process subtitles for {subtitles} - Subtitle file not found: {directory}/{subtitles}
+2024-10-22 00:46:40,411 - INFO - Arguments: directory=/share/movies/Before the World Set on Fire (2023), subtitle_file=/share/movies/Before the World Set on Fire (2023)/Before.the.World.Set.on.Fire.2024.1080p.AMZN.WEB-DL.DDP5.1.H.264-BYNDR[TGx].en.sdh.srt
+2024-10-22 00:46:40,433 - INFO - Processed subtitles for /share/movies/Before the World Set on Fire (2023)/Before.the.World.Set.on.Fire.2024.1080p.AMZN.WEB-DL.DDP5.1.H.264-BYNDR[TGx].en.sdh.srt - Success
+2024-10-22 00:56:11,938 - INFO - Arguments: 
+	directory=/share/movies/Before the World Set on Fire (2023), 
+	subtitle_file=/share/movies/Before the World Set on Fire (2023)/Before.the.World.Set.on.Fire.2024.1080p.AMZN.WEB-DL.DDP5.1.H.264-BYNDR[TGx].en.sdh.srt
+2024-10-22 00:56:11,954 - INFO - Processed subtitles for /share/movies/Before the World Set on Fire (2023)/Before.the.World.Set.on.Fire.2024.1080p.AMZN.WEB-DL.DDP5.1.H.264-BYNDR[TGx].en.sdh.srt - Success
