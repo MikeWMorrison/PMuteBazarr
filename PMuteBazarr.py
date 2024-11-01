@@ -40,7 +40,7 @@ def load_bad_words():
     
     return words, patterns
 
-def process_subtitle(directory, subtitle_file):
+def process_subtitle(directory, subtitle_file, episode_name):
     # Determine the log file path based on the environment
     if os.path.exists('/config/scripts'):
         # Production environment
@@ -56,7 +56,7 @@ def process_subtitle(directory, subtitle_file):
                         format='%(asctime)s - %(levelname)s - %(message)s')
 
     # Log all passed arguments
-    logging.info(f"Arguments: directory={directory}, subtitle_file={subtitle_file}")
+    logging.info(f"Arguments: directory={directory}, subtitle_file={subtitle_file}, episode_name={episode_name}")
 
     try:
         # Check if the subtitle file exists
@@ -89,9 +89,9 @@ def process_subtitle(directory, subtitle_file):
                         full_word = match.group(0)
                         edl_lines.append(f"{start_time:05.3f}\t{end_time:05.3f}\t1\t#Muted:'{full_word}'\n")
                         if pattern.search(lines[i]):
-                            modified_line = re.sub(re.escape(full_word), '%' * len(full_word), modified_line)
+                            modified_line = re.sub(re.escape(full_word), '', modified_line)
                         if i + 1 < len(lines) and pattern.search(lines[i + 1]):
-                            lines[i + 1] = re.sub(re.escape(full_word), '%' * len(full_word), lines[i + 1])
+                            lines[i + 1] = re.sub(re.escape(full_word), '', lines[i + 1])
             modified_lines.append(modified_line)
 
         # Write the modified lines back to the .srt file
@@ -99,16 +99,16 @@ def process_subtitle(directory, subtitle_file):
             srt_file.writelines(modified_lines)
 
         # Create the .edl file
-        edl_path = os.path.splitext(full_subtitle_path)[0] + '.edl'
+        edl_path = os.path.join(directory, f"{episode_name}.edl")
         with open(edl_path, 'w', encoding='utf-8') as edl_file:
             edl_file.writelines(edl_lines)
 
-        logging.info(f"Processed subtitles and created .edl file for {subtitle_file} - Success")
-        print(f"Processed subtitles and created .edl file for {subtitle_file} - Success")
+        logging.info(f"Processed subtitles and created .edl file for {episode_name} - Success")
+        print(f"Processed subtitles and created .edl file for {episode_name} - Success")
 
     except Exception as e:
-        logging.error(f"Failed to process subtitles for {subtitle_file} - {str(e)}")
-        print(f"Failed to process subtitles for {subtitle_file} - {str(e)}")
+        logging.error(f"Failed to process subtitles for {episode_name} - {str(e)}")
+        print(f"Failed to process subtitles for {episode_name} - {str(e)}")
         if not os.path.exists('/config/scripts'):
             raise  # Re-raise the exception for the test environment
 
@@ -118,10 +118,11 @@ def run_test():
     # Use the existing TestFile.srt
     test_file = "TestFile.srt"
     test_dir = os.path.dirname(os.path.abspath(test_file))
+    test_episode_name = "TestEpisode"
 
     try:
         # Call the process_subtitle function with the test file
-        process_subtitle(test_dir, os.path.basename(test_file))
+        process_subtitle(test_dir, os.path.basename(test_file), test_episode_name)
 
         # Print the processed subtitle content
         print("Processed subtitle content:")
@@ -129,7 +130,7 @@ def run_test():
             print(f.read())
 
         # Check if the .edl file exists and print its content
-        edl_file = os.path.splitext(test_file)[0] + '.edl'
+        edl_file = os.path.join(test_dir, f"{test_episode_name}.edl")
         if os.path.exists(edl_file):
             print(f"\nEDL file created/updated: {edl_file}")
             print("EDL file content:")
@@ -157,13 +158,14 @@ if __name__ == "__main__":
     parser.add_argument('--test', action='store_true', help='Run in test mode')
     parser.add_argument('directory', nargs='?', help='Directory containing the subtitle file')
     parser.add_argument('subtitle_file', nargs='?', help='Name of the subtitle file')
+    parser.add_argument('episode_name', nargs='?', help='Name of the episode (used for EDL file)')
     
     args = parser.parse_args()
 
     if args.test:
         run_test()
-    elif args.directory and args.subtitle_file:
-        process_subtitle(args.directory, args.subtitle_file)
+    elif args.directory and args.subtitle_file and args.episode_name:
+        process_subtitle(args.directory, args.subtitle_file, args.episode_name)
     else:
-        print("Usage: python3 PMuteBazarr.py [--test] <directory> <subtitle_file>")
+        print("Usage: python3 PMuteBazarr.py [--test] <directory> <subtitle_file> <episode_name>")
         sys.exit(1)
